@@ -1,0 +1,55 @@
+ <!-- form -->
+ <div class="bg-gray-400">
+    <div class="max-w-3xl mx-auto px-6 py-10">
+        <h1 class="font-sans text-3xl text-center pb-5 text-gray-100"> Add Coding language Creator</h1>
+        <form [formGroup]="creatorForm" (ngSubmit)="saveData()" class="max-w-lg mx-auto">
+            <div class="py-2">
+                <label class="font-serif text-xl text-white">Creator-Name</label>
+                <input formControlName="creatorName" type="text" class="font-sans py-2 px-4 w-full border-2 border-red-300">
+            </div>
+            <div class="py-2">
+                <label class="font-serif text-xl text-white">Language-Name</label>
+                <input formControlName="languageName" type="text" class="font-sans py-2 px-4 w-full border-2 border-red-300">
+            </div>
+            <div class="py-2">
+                <label class="font-serif text-xl text-white">Creator-Nationality</label>
+                <input formControlName="Nationality" type="text" class="font-sans py-2 px-4 w-full border-2 border-red-300">
+            </div>
+            <button type="submit" class="font-sans text-xl text-white bg-red-600 py-3 w-full">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- list of todos -->
+<div class="max-w-4xl mx-auto px-6 py-10">
+    <h1 class="font-sans text-3xl font-bold text-gray-700 pb-1 mb-10 max-w-xl border-b-4 border-red-800">List of languages in database</h1>
+
+    <div class="">
+        <h1 class="font-sans text-2xl pb-10">Currently have <span>[[ {{ listOfLanguages.length }} ]]</span> languages Creators Stored</h1>
+
+        <div class="" *ngIf="listOfLanguages">
+            <table class="table table-fixed w-full text-center border-2 border-red-300">
+                <thead class="bg-red-600">
+                    <tr class="">
+                        <th class="py-4 font-serif text-2xl tracking-wide">Id</th>
+                        <th class="py-4 font-serif text-2xl tracking-wide">Author</th>
+                        <th class="py-4 font-serif text-2xl tracking-wide">Option1</th>
+                        <th class="py-4 font-serif text-2xl tracking-wide">Option2</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let creator of listOfLanguages">
+                    <tr class="">
+                        <td class="font-serif py-3 text-xl">{{ creator.id }}</td>
+                        <td class="font-serif py-3 text-xl">{{ creator.creatorName }}</td>
+                        <td class="font-serif py-1 text-xl border-2 border-gray-400 underline">
+                            <a routerLink="/detail/{{creator.id}}">moreInfo</a>
+                        </td>
+                        <td  class="font-serif py-1 text-xl border-2 border-gray-400 underline">
+                            <app-delete [id]="creator.id"></app-delete>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
